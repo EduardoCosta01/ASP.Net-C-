@@ -1,0 +1,57 @@
+﻿@model List<ContatoModel>
+@{
+    ViewData["Title"] = "Listagem por Modelo";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-action="Criar" asp-controller="Contato">Adicionar novo Modelo</a>
+    </div>
+    
+    <br />
+    
+    <h1 class="display-4"> Lista de Modelo</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Placa</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ContatoModel contato in Model)
+                {
+                    <tr>
+                        <th scope="row">@contato.Id</th>
+                        <td>@contato.Modelo</td>
+                        <td>@contato.Cor</td>
+                        <td>@contato.Placa</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@contato.Id" asp-controller="Contato" asp-action="Editar">Editar</a>
+                                <a role="button" class="btn btn-danger"  asp-route-id="@contato.Id"  asp-controller="Contato" asp-action="ApagarConfirmacao">Excluir</a>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                }
+            }
+
+
+        </tbody>
+    </table>
+    <br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-action="Index" asp-controller="Marca">Voltar</a>
+    </div>
+
+</div>
